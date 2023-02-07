@@ -26,8 +26,12 @@
             </thead>
             <tbody>
                 <tr th:each="campaign: ${campaigns}">
-                    <td th:text="${campaign.getCampaignId()}"></td>
-                    <td>Keywords here</td>
+                    <td th:text="${campaign.getCampaignName()}"></td>
+                    <td>
+                        <ul th:each="keyword: ${campaign.getKeywords()}">
+                            <li th:text="${keyword.getKeywordText()}"></li>
+                        </ul>
+                    </td>
                     <td th:text="${campaign.getBidAmount()}"></td>
                     <td th:text="${campaign.getCampaignFund()}"></td>
                     <td th:if="${campaign.getStatus()}">On</td>

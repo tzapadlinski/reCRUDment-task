@@ -1,14 +1,10 @@
 package com.tzapadlinski.recruitmentcrud.keyword;
 
-import com.tzapadlinski.recruitmentcrud.campaign.Campaign;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Entity
 @Table(name = "keywords")
@@ -24,7 +20,4 @@ public class Keyword {
 
     @Column(name = "keyword_text", nullable = false, unique = true)
     private String keywordText;
-
-    @ManyToMany(mappedBy = "keywords")
-    private Set<Campaign> campaigns = new LinkedHashSet<>();
 }

@@ -33,19 +33,19 @@ public class RecruitmentCrudApplication {
             townService.addTown(new Town(null, "Wroclaw"));
             townService.addTown(new Town(null, "Gdansk"));
 
-            Keyword examleKeyword = keywordService.addKeyword(new Keyword(null, "Food", null));
-            keywordService.addKeyword(new Keyword(null, "Beverage", null));
-            keywordService.addKeyword(new Keyword(null, "Electronics", null));
-            keywordService.addKeyword(new Keyword(null, "Smartphone", null));
-            keywordService.addKeyword(new Keyword(null, "Headphones", null));
-            keywordService.addKeyword(new Keyword(null, "Books", null));
-            keywordService.addKeyword(new Keyword(null, "Sci-fi", null));
+            Keyword exampleKeyword1 = keywordService.addKeyword(new Keyword(null, "food"));
+            Keyword exampleKeyword2 = keywordService.addKeyword(new Keyword(null, "beverage"));
+            keywordService.addKeyword(new Keyword(null, "electronics"));
+            keywordService.addKeyword(new Keyword(null, "smartphone"));
+            keywordService.addKeyword(new Keyword(null, "headphones"));
+            keywordService.addKeyword(new Keyword(null, "books"));
+            keywordService.addKeyword(new Keyword(null, "sci-fi"));
 
             campaignService.addCampaign(
                     new Campaign(
                             null,
                             "Campaign1",
-                            new LinkedHashSet<>(Arrays.asList(examleKeyword)),
+                            new LinkedHashSet<>(Arrays.asList(exampleKeyword1, exampleKeyword2)),
                             new BigDecimal("2000.00"),
                             new BigDecimal("2000.00"),
                             true,
