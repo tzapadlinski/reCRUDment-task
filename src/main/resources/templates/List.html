@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Untitled</title>
+    <link rel="stylesheet" th:href="@{/bootstrap.min.css}">
+</head>
+
+<body>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Campaign name</th>
+                    <th>Keywords</th>
+                    <th>Bid amount</th>
+                    <th>Campaign fund</th>
+                    <th>Status</th>
+                    <th>Town</th>
+                    <th>Radius</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="campaign: ${campaigns}">
+                    <td th:text="${campaign.getCampaignId()}"></td>
+                    <td>Keywords here</td>
+                    <td th:text="${campaign.getBidAmount()}"></td>
+                    <td th:text="${campaign.getCampaignFund()}"></td>
+                    <td th:if="${campaign.getStatus()}">On</td>
+                    <td th:unless="${campaign.getStatus()}">Off</td>
+                    <td th:text="${campaign.getTown().getTownName()}"></td>
+                    <td th:text="${campaign.getRadius()}"></td>
+                    <td>
+                        <a th:href="@{/campaign/update(id=${campaign.getCampaignId()})}">
+                            <button class="btn btn-primary" type="button">Edit</button>
+                        </a>
+                    </td>
+                    <td>
+                        <form th:action="@{/campaign/delete(id=${campaign.getCampaignId()})}" method="post">
+                            <button class="btn btn-primary" type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                <tr></tr>
+            </tbody>
+        </table>
+    </div>
+    <a th:href="@{/campaign/add}">
+        <button class="btn btn-primary" type="button">Add campaign</button>
+    </a>
+    <script type="text/javascript" th:src="@{/bootstrap.min.js}"></script>
+</body>
+
+</html>

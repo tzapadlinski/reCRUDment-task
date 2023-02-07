@@ -1,13 +1,12 @@
 package com.tzapadlinski.recruitmentcrud.keyword;
 
-import com.tzapadlinski.recruitmentcrud.town.TownRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 /*
-Keywords should be pre-populated, so I added small API
+Keywords should be pre-populated with typehead, so I added small API
 to add new via Postman or CommandlineRunner.
  */
 @RestController
@@ -31,7 +30,7 @@ public class KeywordController {
     }
 
     @DeleteMapping("/delete")
-    public void deleteKeyword(@PathVariable Long keywordId){
+    public void deleteKeyword(@RequestParam Long keywordId){
         keywordService.deleteKeyword(keywordId);
     }
 }

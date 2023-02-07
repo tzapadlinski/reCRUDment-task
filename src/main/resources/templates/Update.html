@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Untitled</title>
+    <link rel="stylesheet" th:href="@{/bootstrap.min.css}">
+</head>
+
+<body>
+    <form>
+        <div style="margin-top: 9px;">
+            <span>Campaign name</span>
+            <input class="form-control" type="text" style="width: 25%;">
+        </div>
+        <div style="margin-top: 9px;">
+            <span>Keywords (divided with space)</span>
+            <input class="form-control" type="text" style="width: 25%;">
+        </div>
+        <div style="margin-top: 9px;">
+            <span>Bid amount</span>
+            <input class="form-control" type="text" style="width: 25%;">
+        </div>
+        <div style="margin-top: 9px;">
+            <span>Campaign fund</span>
+            <input class="form-control" type="text" style="width: 25%;">
+        </div>
+        <div style="margin-top: 9px;">
+            <span>Status</span>
+            <input type="checkbox" style="margin-left: 10px;">
+            <div style="margin-top: 9px;">
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" aria-expanded="false" data-bs-toggle="dropdown" type="button">Town&nbsp;</button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">First Item</a>
+                        <a class="dropdown-item" href="#">Second Item</a>
+                        <a class="dropdown-item" href="#">Third Item</a></div>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 9px;">
+            <span>Radius</span>
+            <input class="form-control" type="text" style="width: 25%;">
+        </div>
+        <button class="btn btn-primary" type="submit" style="margin-top: 10px;">Submit</button>
+    </form>
+    <script type="text/javascript" th:src="@{/bootstrap.min.js}"></script>
+</body>
+
+</html>

@@ -3,11 +3,12 @@ package com.tzapadlinski.recruitmentcrud.campaign;
 import com.tzapadlinski.recruitmentcrud.keyword.Keyword;
 import com.tzapadlinski.recruitmentcrud.town.Town;
 import jakarta.persistence.*;
-import jakarta.validation.Valid;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Digits;
-import jakarta.validation.constraints.Min;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.util.LinkedHashSet;
@@ -40,7 +41,7 @@ public class Campaign {
             " than 10 digits and fraction part shouldn't be greater than 2 digits.")
     private BigDecimal bidAmount;
 
-    //Didn't really know what is Emerald, so I left it just like bidAmount
+    //Didn't really know what is Emerald, so I left it just like bidAmount (without min)
     @Column(name = "campaign_fund", nullable = false, precision = 12, scale = 2)
     @Digits(integer = 10, fraction = 2, message = "Integer part shouldn't be greater" +
             " than 10 digits and fraction part shouldn't be greater than 2 digits.")

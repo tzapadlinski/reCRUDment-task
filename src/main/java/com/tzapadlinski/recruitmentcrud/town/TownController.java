@@ -30,7 +30,7 @@ public class TownController {
     }
 
     @DeleteMapping("/delete")
-    public void deleteTown(@PathVariable Long townId){
+    public void deleteTown(@RequestParam Long townId){
         townService.deleteTown(townId);
     }
 }

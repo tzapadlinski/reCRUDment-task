@@ -7,5 +7,7 @@ public interface TownService {
 
     public List<Town> getAllTowns();
 
+    public Town getTownByName(String townName);
+
     public void deleteTown(Long townId);
 }
