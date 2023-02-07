@@ -98,7 +98,7 @@ public class CampaignController {
                                  BindingResult result,
                                  @RequestParam(name = "id") Long campaignId){
         if (result.hasErrors())
-            return "redirect:/campaign/update?id=" + wrapper.getCampaign().getCampaignId();
+            return "redirect:/campaign/update?id=" + campaignId;
         Campaign newCampaign = wrapper.getCampaign();
         //Somehow thymeleaf doesn't persist ModelAttribute when not changed in form so had to do this also
         newCampaign.setCampaignId(campaignId);
