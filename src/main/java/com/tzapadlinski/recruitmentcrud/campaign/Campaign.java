@@ -5,6 +5,8 @@ import com.tzapadlinski.recruitmentcrud.town.Town;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,6 +29,7 @@ public class Campaign {
     private Long campaignId;
 
     @Column(name = "campaign_name", nullable = false)
+    @NotEmpty
     private String campaignName;
 
     @ManyToMany
@@ -39,15 +42,18 @@ public class Campaign {
     @DecimalMin(value = "1000.00", message = "Minimal bid amount is 1000.0.")
     @Digits(integer = 10, fraction = 2, message = "Integer part shouldn't be greater" +
             " than 10 digits and fraction part shouldn't be greater than 2 digits.")
+    @NotNull
     private BigDecimal bidAmount;
 
     //Didn't really know what is Emerald, so I left it just like bidAmount (without min)
     @Column(name = "campaign_fund", nullable = false, precision = 12, scale = 2)
     @Digits(integer = 10, fraction = 2, message = "Integer part shouldn't be greater" +
             " than 10 digits and fraction part shouldn't be greater than 2 digits.")
+    @NotNull
     private BigDecimal campaignFund;
 
     @Column(name = "status", nullable = false)
+    @NotNull
     private Boolean status;
 
     //Assumed, that campaign has only one town
@@ -56,5 +62,6 @@ public class Campaign {
     private Town town;
 
     @Column(name = "radius", nullable = false)
+    @NotNull
     private Integer radius;
 }

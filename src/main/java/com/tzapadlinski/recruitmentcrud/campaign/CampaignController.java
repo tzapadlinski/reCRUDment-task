@@ -86,16 +86,34 @@ public class CampaignController {
     public String updateCampaignForm(@RequestParam(name = "id") Long campaignId,
                                      Model model){
         Campaign campaignToUpdate = campaignService.getCampaignById(campaignId);
-        model.addAttribute("campaign", campaignToUpdate);
+        CampaignWrapper wrapper = new CampaignWrapper();
+        wrapper.setCampaign(campaignToUpdate);
+        model.addAttribute("campaignWrapper", wrapper);
+        model.addAttribute("towns", townService.getAllTowns());
         return "Update";
     }
 
-    @PutMapping("/update")
-    public String updateCampaign(@RequestBody @Valid Campaign updatedCampaign,
-                                 BindingResult result){
+    @PostMapping("/update")
+    public String updateCampaign(@ModelAttribute @Valid CampaignWrapper wrapper,
+                                 BindingResult result,
+                                 @RequestParam(name = "id") Long campaignId){
         if (result.hasErrors())
-            return "redirect:/campaign/update?id=" + updatedCampaign.getCampaignId();
-        //TODO finish
+            return "redirect:/campaign/update?id=" + wrapper.getCampaign().getCampaignId();
+        Campaign newCampaign = wrapper.getCampaign();
+        //Somehow thymeleaf doesn't persist ModelAttribute when not changed in form so had to do this also
+        newCampaign.setCampaignId(campaignId);
+        //I know it will negatively cause performance, but couldn't find any way around it
+        Town town = townService.getTownByName(wrapper.getTownName());
+        newCampaign.setTown(town);
+        Set<Keyword> keywords;
+        try {
+            keywords = getKeywordsFromString(wrapper.getKeywords());
+        } catch (IllegalStateException e){
+            e.printStackTrace();
+            return "redirect:/campaign/update?id=" + wrapper.getCampaign().getCampaignId();
+        }
+        newCampaign.setKeywords(keywords);
+        campaignService.updateCampaign(newCampaign);
         return "redirect:/campaign/all";
     }
 
@@ -103,9 +121,13 @@ public class CampaignController {
         Set<Keyword> keywords = new LinkedHashSet<>();
         String [] keywordTexts = keywordsString.split(" ");
         for (String text : keywordTexts) {
+            if (text.isEmpty())
+                continue;
             Keyword extractedKeyword = keywordService.getKeywordByText(unifier.unify(text));
             keywords.add(extractedKeyword);
         }
+        if (keywords.isEmpty())
+            throw new IllegalStateException("Campaign should have at least one keyword,");
         return keywords;
     }
 }
